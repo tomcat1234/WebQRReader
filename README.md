@@ -18,5 +18,9 @@ Restriction:
 
 制限事項として、デコードできるテキストはASCII文字かUTF-8の文字のみです。（UTF-8のデコーダは残念な出来です。）
 
+
+Thank you for  great libraries.
+
 ZXing: http://code.google.com/p/zxing/
-SCript#: http://projects.nikhilk.net/ScriptSharp
+
+Script#: http://projects.nikhilk.net/ScriptSharp
