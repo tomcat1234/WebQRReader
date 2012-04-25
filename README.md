@@ -30,10 +30,13 @@ This C# ZXingQR Project is NOT a normal .NET Framework project.
 もしC#のZXingQRプロジェクトをビルドする場合は、Script#をダウンロードしインストールしてください。
 C#のZXingQRプロジェクトは、通常の.NET Frameworkのプロジェクトではありません。
 
-Thank you for great libraries.
+Thank you for great softwares.
 
 ZXing: http://code.google.com/p/zxing/
 
 Script#: http://projects.nikhilk.net/ScriptSharp
 
+
+License:
+ Apache License 2.0
 
