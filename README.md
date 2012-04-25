@@ -10,6 +10,11 @@ For example:
 Restriction:
  Text must be written by ASCII or UTF-8 encoding.(My UTF-8 decoder is buggy...)
 
+To use this decoder, your web site only includes two script files "mscorlib.js" of Script# and "ZXingQR.js". See example.
+
+If you build this C# ZXingQR Project, you must download Script# and install it.
+This C# ZXingQR Project is NOT a normal .NET Framework project.
+
 
 このソフトウェアは、JavaScriptのみで書かれたQRコードデコーダです。QRコードの画像をデコードしテキストを抽出できます。デコードエンジンはZXingのC#派生系を使っていて、それをScript#でJavaScriptに変換したものです。
 
@@ -18,9 +23,15 @@ Restriction:
 
 制限事項として、デコードできるテキストはASCII文字かUTF-8の文字のみです。（UTF-8のデコーダは残念な出来です。）
 
+このデコーダを使うには、Script#の"mscorlib.js"と"ZXingQR.js"の2つのスクリプトファイルを読み込んでください。詳しくはサンプルを見てください。
 
-Thank you for  great libraries.
+もしC#のZXingQRプロジェクトをビルドする場合は、Script#をダウンロードしインストールしてください。
+C#のZXingQRプロジェクトは、通常の.NET Frameworkのプロジェクトではありません。
+
+Thank you for great libraries.
 
 ZXing: http://code.google.com/p/zxing/
 
 Script#: http://projects.nikhilk.net/ScriptSharp
+
+
