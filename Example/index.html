@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<meta charset="UTF-8"/>
+		<script type="text/javascript" src="mscorlib.js"></script>
+		<script type="text/javascript" src="ZXingQR.js"></script>
+		<title>Web カメラで QRコード 読み取り</title>
+		<script type="text/javascript">
+			window.onload = function (){
+				document.getElementById("disable").style.display = "none";
+				if (navigator.webkitGetUserMedia)
+				{
+					document.getElementById("chrome").style.display = "none";
+					document.getElementById("sample").style.display = "none";
+				}
+				else
+				{
+					document.getElementById("permission").style.display = "none";
+					document.getElementById("camera").style.display = "none";
+					return;
+				}
+
+				navigator.webkitGetUserMedia("video", function(stream){
+					document.getElementById("permission").style.display = "none";
+					
+					var video = document.getElementById("v");
+					video.src = webkitURL.createObjectURL(stream);
+				},function(error){
+					document.getElementById("disable").style.display = "block";
+					document.getElementById("permission").style.display = "none";
+				});
+				
+				var strList = [];
+				setInterval(function(){
+
+					//document.getElementById("result").innerHTML = "";
+
+					var video = document.getElementById("v");
+					var canvas = document.getElementById("c");
+					canvas.width = video.videoWidth;
+					canvas.height = video.videoHeight;
+					
+					var ctx = canvas.getContext("2d");
+					ctx.drawImage(video, 0, 0);
+					var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+					
+					var message = "";
+					var isSuccess = true;
+					try
+					{
+						var reader = new com.google.zxing.qrcode.QRCodeReader();
+						var source = new RGBLuminanceSource(imageData.data, imageData.width, imageData.height);
+						var bitmap = new com.google.zxing.BinaryBitmap(new com.google.zxing.common.HybridBinarizer(source));
+						var result = reader.decode1(bitmap);
+						message = result.get_text();
+						isSuccess = true;
+					}
+					catch (ex)
+					{
+						if (ex.message.indexOf("ReaderException") < 0)
+						{
+							message = "予定外のエラーです。[" + ex.message + "]";
+						}
+						else
+						{
+							message = "読取失敗！（角度や距離を変えて再チャレンジしてね。）";
+						}
+						isSuccess = false;
+					}
+
+					
+					//strList.push(message);
+					//if (strList.length >= 10)
+					//{
+					//	strList.shift();
+					//}
+
+					//document.getElementById("result").innerHTML = strList.join("<br/>");
+
+					if (isSuccess)
+					{
+						qrOnRead(message);
+						if (prevVal != message)
+						{
+							qrOnChange(message);
+							prevVal = message;
+						}
+					}
+				}, 10);
+			};
+			var prevVal = "";
+			
+			var timeBase;
+			var strList = [];
+			var objAudioList = [];
+			var i = 0;
+			function qrOnChange(val)
+			{
+				if (val.length > 1 && isNumber(val[val.length - 1]))
+				{
+					val = val.substr(0, val.length - 1);
+				}
+				objAudioList[i] = new Audio("sound/" + encodeURIComponent(val) + ".mp3");
+				objAudioList[i].play();
+				i++;
+				i = i == 10 ? 0 : i;
+
+				if (!timeBase)
+				{
+					timeBase = new Date();
+				}
+				strList.push(val + " " + (new Date() - timeBase));
+				//if (strList.length >= 10)
+				//{
+				//	strList.shift();
+				//}
+				
+				document.getElementById("result").innerHTML = strList.join("<br/>");
+			}
+			
+			function qrOnRead(val)
+			{
+			}
+			
+			function isNumber(value)
+			{
+				if(value instanceof Array)
+					return false;
+				
+				//trim
+				value = String(value).replace(/^[ 　]+|[ 　]+$/g, '');
+				
+				if(value.length == 0)
+					return false;
+				    
+				if(isNaN(value) || !isFinite(value))
+					return false;
+				
+				return true;
+			}
+
+			function dummy(val)
+			{
+				objAudio.pause();
+				switch (val.substr(0, 1))
+				{
+					case "d":
+						objAudio = new Audio("sound/d.mp3");
+						break;
+					case "r":
+						objAudio = new Audio("sound/r.mp3");
+						break;
+					case "m":
+						objAudio = new Audio("sound/m.mp3");
+						break;
+					case "f":
+						objAudio = new Audio("sound/f.mp3");
+						break;
+					case "s":
+						objAudio = new Audio("sound/s.mp3");
+						break;
+					case "l":
+						objAudio = new Audio("sound/l.mp3");
+						break;
+					case "c":
+						objAudio = new Audio("sound/c.mp3");
+						break;
+				}
+				objAudio.play();
+			}
+			
+		</script>
+	</header>
+	<body>
+		<div id="chrome"><a href="http://dev.chromium.org/getting-involved/dev-channel">Chrome Dev Channel</a> を使ってね。</div>
+		<div id="permission">↑「http://～～ がカメラへのアクセスを求めています。」を許可してね。</div>
+		<div id="disable"><a href="chrome:flags">chrome:flags</a> で「MediaStream を有効にする」を有効にしてね。</div>
+		<div id="camera">
+			<video id="v" autoplay></video>
+			<img src="image/music.gif"/>
+			<!--img src="image/drmfslc.gif" /-->
+			<br>
+			<br>
+			<canvas id="c" style="display: none;"></canvas>
+			<div>↓認識結果↓</div><br />
+			<div id="result"></div>
+		</div>
+		<div id="sample">
+			<br />
+			<div>動作イメージ</div>
+			<img src="sample.png"/>
+		</div>
+	</body>
+</html>
