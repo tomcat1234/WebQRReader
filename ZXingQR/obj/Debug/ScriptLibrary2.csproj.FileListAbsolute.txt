@@ -1,0 +1,3 @@
+C:\C#\ScriptLibrary2\ScriptLibrary2\obj\Debug\ResolveAssemblyReference.cache
+C:\C#\ScriptLibrary2\ScriptLibrary2\obj\Debug\ScriptLibrary2.dll
+C:\C#\ScriptLibrary2\ScriptLibrary2\obj\Debug\ScriptLibrary2.pdb

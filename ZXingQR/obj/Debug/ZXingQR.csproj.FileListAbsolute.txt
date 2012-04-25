@@ -1,0 +1,6 @@
+C:\C#\ScriptLibrary2\ScriptLibrary2\obj\Debug\ResolveAssemblyReference.cache
+C:\C#\ScriptLibrary2\ScriptLibrary2\obj\Debug\ZXingQR.dll
+C:\C#\ScriptLibrary2\ScriptLibrary2\obj\Debug\ZXingQR.pdb
+C:\C#\ZXingQR\ZXingQR\obj\Debug\ResolveAssemblyReference.cache
+C:\C#\ZXingQR\ZXingQR\obj\Debug\ZXingQR.dll
+C:\C#\ZXingQR\ZXingQR\obj\Debug\ZXingQR.pdb
