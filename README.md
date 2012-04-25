@@ -10,7 +10,8 @@ For example:
 Restriction:
  Text must be written by ASCII or UTF-8 encoding.(My UTF-8 decoder is buggy...)
 
-To use this decoder, your web site only includes two script files "mscorlib.js" of Script# and "ZXingQR.js". See example.
+To use this decoder, your web site only includes two script files "mscorlib.js" of Script# and "ZXingQR.js".
+See example. This example must be delivered on your website, and you open that website by Chrome 18 dev channel or later.
 
 If you build this C# ZXingQR Project, you must download Script# and install it.
 This C# ZXingQR Project is NOT a normal .NET Framework project.
@@ -23,7 +24,8 @@ This C# ZXingQR Project is NOT a normal .NET Framework project.
 
 制限事項として、デコードできるテキストはASCII文字かUTF-8の文字のみです。（UTF-8のデコーダは残念な出来です。）
 
-このデコーダを使うには、Script#の"mscorlib.js"と"ZXingQR.js"の2つのスクリプトファイルを読み込んでください。詳しくはサンプルを見てください。
+このデコーダを使うには、Script#の"mscorlib.js"と"ZXingQR.js"の2つのスクリプトファイルを読み込んでください。
+詳しくはサンプルを見てください。サンプルはWebサイトに配置し、Chrome 18 Dev Channel以降で見てください。
 
 もしC#のZXingQRプロジェクトをビルドする場合は、Script#をダウンロードしインストールしてください。
 C#のZXingQRプロジェクトは、通常の.NET Frameworkのプロジェクトではありません。
